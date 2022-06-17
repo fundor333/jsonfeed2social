@@ -1,0 +1,42 @@
+[tool.black]
+line-length = 79
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[tool.skjold]
+sources = ["pyup", "gemnasium"]  # Sources to check against.
+report_only = true                         # Report only, always exit with zero.
+cache_dir = '.skylt_cache'                 # Cache location (default: `~/.skjold/cache`).
+cache_expires = 86400                      # Cache max. age.
+verbose = true                             # Be verbose.
+
+[tool.poetry]
+name = "jsonfeed2social"
+version = "0.1.0"
+description = "Tweet and toot from your jsonfeeed"
+authors = ["Fundor333 <fundor333@fundor333.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.dev-dependencies]
+pre-commit = "^2.19.0"
+pylint = "^2.14.2"
+flake8 = "^4.0.1"
+autopep8 = "^1.6.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
