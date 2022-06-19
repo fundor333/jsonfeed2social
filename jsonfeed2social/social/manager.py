@@ -9,12 +9,9 @@ def sender(config: ConfigParser, populatecache: bool):
     feed = ManagerFeed(config["feed"]["uri"])
     try:
         with open(config["cache"]["cachefile"]) as file:
-            raw_lines = file.readlines()
+            lines = file.readlines()
     except FileNotFoundError:
-        raw_lines = []
-    lines = []
-    for e in raw_lines:
-        lines.append(e.strip())
+        lines = []
     news, id_list = feed.get_to_publish(lines)
     if len(news) > 0:
         with open(config["cache"]["cachefile"], "a+") as file:

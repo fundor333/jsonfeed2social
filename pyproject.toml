@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "jsonfeed2social"
-version = "1.2.4"
+version = "1.2.5"
 description = "Tweet and toot from your jsonfeeed"
 authors = ["Fundor333 <fundor333@fundor333.com>"]
 
