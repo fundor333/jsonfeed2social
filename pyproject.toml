@@ -24,7 +24,7 @@ verbose = true                             # Be verbose.
 
 [tool.poetry]
 name = "jsonfeed2social"
-version = "1.0.0"
+version = "1.0.1"
 description = "Tweet and toot from your jsonfeeed"
 authors = ["Fundor333 <fundor333@fundor333.com>"]
 

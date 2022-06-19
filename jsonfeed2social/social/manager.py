@@ -2,6 +2,7 @@ from configparser import ConfigParser
 
 from jsonfeed2social.jsonfeed import ManagerFeed
 from jsonfeed2social.social.mastodon import mastodon_sender
+from jsonfeed2social.social.twitter import twitter_sender
 
 
 def sender(config: ConfigParser, populatecache: bool):
@@ -21,5 +22,13 @@ def sender(config: ConfigParser, populatecache: bool):
             file.write(id_list)
         if not populatecache:
             # We can send the message
-            # twitter_sender(config, news)
-            mastodon_sender(config, news)
+            try:
+                config["feed"]["tweet"]
+                twitter_sender(config, news)
+            except KeyError:
+                pass
+            try:
+                config["feed"]["toot"]
+                mastodon_sender(config, news)
+            except KeyError:
+                pass
