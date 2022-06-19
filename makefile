@@ -20,7 +20,7 @@ update: ## Update the dependency project
 html: docs## Serve the docs
 	poetry run mkdocs serve
 
-prepublish: test docs ## Code for the prepublish
+prepublish: test ## Code for the prepublish
 
 publish: prepublish ## Testing and publish the paackage
 	poetry publish --build
