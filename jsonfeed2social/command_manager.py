@@ -2,6 +2,7 @@ import click
 
 from jsonfeed2social.config import init_config
 from jsonfeed2social.jsonfeed import ManagerFeed
+from jsonfeed2social.social.manager import sender
 
 
 @click.group()
@@ -11,13 +12,15 @@ def cli():
 
 @cli.command()
 @click.option("--config", default="config.ini", help="Path to the config file")
-def runner(config):
+@click.option("--populatecache", default=False, help="Populate the cache")
+def run(config, populatecache):
     config = init_config(config)
     sections = config.sections()
     if all(["twitter" not in sections, "mastodon" not in sections]):
         click.echo(
             "You need to set the twitter config or the mastodon config for working"
         )
+    sender(config, populatecache)
 
 
 @cli.command()

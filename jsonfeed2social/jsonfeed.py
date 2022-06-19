@@ -32,10 +32,12 @@ class ManagerFeed:
     def get_to_publish(
         self,
         list_done: list,
-    ) -> list:
+    ) -> (list, str):
         full_list = self.elaborate_feed()
         out = []
+        other = ""
         for e in full_list.keys():
             if e not in list_done:
                 out.append(full_list.get(e))
-        return out
+                other += f"\n{e}"
+        return out, other.strip()

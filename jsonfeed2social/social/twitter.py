@@ -1,4 +1,8 @@
+from configparser import ConfigParser
+
 import tweepy
+
+from jsonfeed2social.utility import get_message
 
 
 def send_tweet(
@@ -13,3 +17,14 @@ def send_tweet(
     auth.set_access_token(access_token, access_secret)
     api = tweepy.API(auth, wait_on_rate_limit=True)
     api.update_status(status=status)
+
+
+def twitter_sender(config: ConfigParser, news: list):
+    for e in news:
+        send_tweet(
+            get_message(e, config["feed"]["tweet"]),
+            config["twitter"]["twitter_consumer_key"],
+            config["twitter"]["twitter_consumer_secret"],
+            config["twitter"]["twitter_access_token"],
+            config["twitter"]["twitter_access_token_secret"],
+        )

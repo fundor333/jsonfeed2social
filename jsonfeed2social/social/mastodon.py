@@ -1,6 +1,9 @@
+from configparser import ConfigParser
+
 import requests
 
 from jsonfeed2social.exception import MastodonException
+from jsonfeed2social.utility import get_message
 
 
 def send_toot(tweet: str, host_instance: str, token: str):
@@ -18,4 +21,13 @@ def send_toot(tweet: str, host_instance: str, token: str):
     else:
         raise MastodonException(
             f"Status return {response.status_code} - {response.json()}"
+        )
+
+
+def mastodon_sender(config: ConfigParser, news: list):
+    for e in news:
+        send_toot(
+            get_message(e, config["feed"]["toot"]),
+            config["mastodon"]["instance_url"],
+            config["mastodon"]["mastodon_access_token"],
         )

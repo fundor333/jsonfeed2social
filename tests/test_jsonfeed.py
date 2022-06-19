@@ -32,9 +32,14 @@ class ManagerFeedTester(TestCase):
             self.assertTrue(e in c.feed_sections)
         temp_data = c.elaborate_feed()
         lenth_data = len(temp_data.keys())
-        not_data = list(temp_data.keys())[: int(lenth_data / 3)]
-        self.assertTrue(
-            len(c.get_to_publish(not_data)) == lenth_data - len(not_data)
-        )
-        for e in c.get_to_publish(not_data):
+        not_data = list(temp_data.keys())[: int(lenth_data / 4)]
+        feeds, ids = c.get_to_publish(not_data)
+        self.assertTrue(len(feeds) == lenth_data - len(not_data))
+        for e in feeds:
+            self.assertTrue(e["id"] is not not_data)
+        new_not_data = []
+        for e in not_data:
+            new_not_data.append(f"{e}\n")
+        feeds, ids = c.get_to_publish(new_not_data)
+        for e in feeds:
             self.assertTrue(e["id"] is not not_data)
