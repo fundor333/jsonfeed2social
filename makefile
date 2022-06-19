@@ -16,10 +16,6 @@ install: ## Install the env
 update: ## Update the dependency project
 	poetry update
 
-.PHONY: docs
-docs:  ## Previewing as you write documentation
-	poetry run mkdocs build --clean
-
 .PHONY: html
 html: docs## Serve the docs
 	poetry run mkdocs serve
