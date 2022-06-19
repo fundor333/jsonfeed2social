@@ -10,7 +10,7 @@ def get_message(data: dict, message_format: str):
     env = Environment()
     ast = env.parse(message_format)
     for e in meta.find_undeclared_variables(ast):
-        if not data.get(e, False):
+        if not data.get(e, False) and e != "tags":
             raise FildNotInData(f"You need {e} for the message")
     if "tags" in data:
         tags = ""
