@@ -7,7 +7,7 @@ class ManagerFeed:
     def __init__(self, feed_url: str):
         self._feed = requests.get(feed_url).json()
         self._item_feed = []
-        self._rss_sections = []
+        self._feed_sections = []
 
     @property
     def item_feed(self):
@@ -15,16 +15,16 @@ class ManagerFeed:
         return self._item_feed
 
     @property
-    def rss_sections(self) -> set:
-        self._rss_sections = set().union(*(d.keys() for d in self.item_feed))
-        return self._rss_sections
+    def feed_sections(self) -> set:
+        self._feed_sections = set().union(*(d.keys() for d in self.item_feed))
+        return self._feed_sections
 
     def elaborate_feed(self) -> dict:
         out = {}
         for e in self.item_feed:
             dict_you_want = {
                 your_key: e.get(your_key, None)
-                for your_key in self.rss_sections
+                for your_key in self.feed_sections
             }
             out[dict_you_want["id"]] = dict_you_want
         return out

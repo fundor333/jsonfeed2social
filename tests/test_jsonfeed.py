@@ -29,7 +29,7 @@ class ManagerFeedTester(TestCase):
         c = ManagerFeed(TEST_URL)
         self.assertEqual(c.item_feed, FEED_DATA["items"])
         for e in NEEDED_FIELD:
-            self.assertTrue(e in c.rss_sections)
+            self.assertTrue(e in c.feed_sections)
         temp_data = c.elaborate_feed()
         lenth_data = len(temp_data.keys())
         not_data = list(temp_data.keys())[: int(lenth_data / 3)]

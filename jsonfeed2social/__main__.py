@@ -1,8 +1,8 @@
-from jsonfeed2social.command_manager import runner
+from jsonfeed2social.command_manager import cli
 
 
 def launcher():
-    runner(prog_name="jsonfeed2social")
+    cli(prog_name="jsonfeed2social")
 
 
 if __name__ == "__main__":
