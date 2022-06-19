@@ -15,10 +15,13 @@ def get_message(data_old: dict, message_format: str):
             raise FildNotInData(f"You need {e} for the message")
     if "tags" in data.keys():
         tags = ""
-        for e in data["tags"]:
-            tag = re.sub(r"[^a-zA-Z0-9]", "", e)
-            tags += f"#{tag} "
-        data["tags"] = tags.strip()
+        try:
+            for e in data["tags"]:
+                tag = re.sub(r"[^a-zA-Z0-9]", "", e)
+                tags += f"#{tag} "
+            data["tags"] = tags.strip()
+        except TypeError:
+            print(data)
     rtemplate = Template(message_format)
     data = rtemplate.render(**data)
     return data
