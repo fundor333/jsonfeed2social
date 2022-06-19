@@ -13,7 +13,7 @@ def get_message(data_old: dict, message_format: str):
     for e in meta.find_undeclared_variables(ast):
         if not data.get(e, False) and e != "tags":
             raise FildNotInData(f"You need {e} for the message")
-    if "tags" in data:
+    if "tags" in data.keys():
         tags = ""
         for e in data["tags"]:
             tag = re.sub(r"[^a-zA-Z0-9]", "", e)
