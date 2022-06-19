@@ -37,7 +37,7 @@ class ManagerFeed:
         out = []
         other = ""
         for e in full_list.keys():
-            if e not in list_done:
+            if e not in list_done and f"{e}\n" not in list_done:
                 out.append(full_list.get(e))
                 other += f"\n{e}"
         return out, other.strip()
