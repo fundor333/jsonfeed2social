@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "jsonfeed2social"
-version = "1.2.0"
+version = "1.2.1"
 description = "Tweet and toot from your jsonfeeed"
 authors = ["Fundor333 <fundor333@fundor333.com>"]
 
@@ -55,9 +55,9 @@ pylint = "^2.14.2"
 flake8 = "^4.0.1"
 autopep8 = "^1.6.0"
 
+[tool.poetry.plugins."console_scripts"]
+"jsonfeed2social" = "jsonfeed2social.__main__:launcher"
+
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
-
-[tool.poetry.plugins."console_scripts"]
-"jsonfeed2social" = "jsonfeed2social.__main__:launcher"
