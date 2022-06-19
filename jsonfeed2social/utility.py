@@ -6,7 +6,8 @@ from jinja2 import Environment, meta
 from jsonfeed2social.exception import FildNotInData
 
 
-def get_message(data: dict, message_format: str):
+def get_message(data_old: dict, message_format: str):
+    data = data_old
     env = Environment()
     ast = env.parse(message_format)
     for e in meta.find_undeclared_variables(ast):
