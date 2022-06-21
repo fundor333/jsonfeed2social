@@ -18,13 +18,13 @@ def sender(config: ConfigParser, populatecache: bool):
             file.write(id_list)
         if not populatecache:
             # We can send the message
-            news, id_list = feed.get_to_publish(lines)
+            news, _ = feed.get_to_publish(lines)
             try:
                 config["feed"]["tweet"]
                 twitter_sender(config, news)
             except KeyError:
                 pass
-            news, id_list = feed.get_to_publish(lines)
+            news, _ = feed.get_to_publish(lines)
             try:
                 config["feed"]["toot"]
                 mastodon_sender(config, news)
