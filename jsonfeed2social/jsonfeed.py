@@ -40,4 +40,4 @@ class ManagerFeed:
             if e not in list_done and f"{e}\n" not in list_done:
                 out.append(full_list.get(e))
                 other += f"\n{e}"
-        return out, other.strip()
+        return out, other
